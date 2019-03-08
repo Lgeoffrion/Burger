@@ -29,15 +29,16 @@ router.post("/create", function (req, res) {
 
 //Devour Burger (Modify its state)
 
-router.put('/:id', function(req, res) {
-    burgers.updateOne(req.params.id, req.body.devoured, function(result) {
+router.post('/devour', function(req, res) {
+    console.log(req.body.burgerID);
+    burger.updatedOne(req.body.burgerID, function(result) {
     console.log(result);
     res.redirect("/");
     });
   });
 
 //Delete from Devour List
-router.delete('/delete/:id', function (req, res) {
+router.post('/delete/:id', function (req, res) {
     burger.deleteOne(req.params.id, function () {
         res.redirect('/');
     });

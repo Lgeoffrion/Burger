@@ -18,8 +18,8 @@ var orm ={
             callback(data);
         });
     },
-    updatedOne: function (table, column, colVal, condition, conditionVal, callback){
-        var queryString = "UPDATE " + table + " SET " + col + " =? " + " WHERE " + condition + "=?";
+    updatedOne: function (table,  burgerID,  callback){
+        var queryString = "UPDATE " + table + " SET devoured = True  WHERE id=" + burgerID;
         connection.query(queryString, function(err,data){
             if (err) throw err;
             callback(data);
