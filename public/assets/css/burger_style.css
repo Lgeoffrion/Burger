@@ -1,13 +1,36 @@
+/* Google font family
+font-family: 'Cherry Cream Soda', cursive; */
+
+*{
+    font-family: 'Cherry Cream Soda', cursive;
+}
+
 body{
 background-image: url(../img/burger-close-up-delicious-1639565.jpg);
 background-size: cover;
 }
 
 .jumbotron{
-    background-color: rgba(255, 255, 255, 0.459);
+    background-color: rgba(58, 62, 126, 0.116);
 }
 
-img{
+#titleName{
+    font-size: 80px;
+}
+
+.burgerMid{
     max-width: 200px;
     max-height: 200px;
+}
+
+
+
+.ready-items{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 5px;
+}
+
+ul{
+    padding: 0px;
 }

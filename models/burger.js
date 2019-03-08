@@ -5,22 +5,30 @@ var orm = require("../config/orm");
 
 //CREATE THE CODE THAT WILL CALL THE ORM FUNCTIONS USING BURGER SPECIFIC INPUT FOR THE ORM
 var burger = {
-    all: function(cb) {
-      orm.all("burgers", function(res) {
-        cb(res);
+    selectAll: function(callback) {
+      orm.selectAll("burgers", function(res) {
+        callback(res);
       });
     },
-    // The variables cols and vals are arrays.
-    create: function(cols, vals, cb) {
-      orm.create("burgers", cols, vals, function(res) {
-        cb(res);
+
+    insertOne: function(val, callback) {
+      orm.insertOne("burgers", "name", val, function(res) {
+        callback(res);
       });
     },
-    update: function(objColVals, condition, cb) {
-      orm.update("burgers", objColVals, condition, function(res) {
-        cb(res);
-      });
-    }
+
+    updatedOne: function(id, devoured, cb) {
+        orm.update("burgers", id, devoured, function(res) {
+          console.log(res);
+          cb(res);
+        });
+    },
+
+    deleteOne: function(conditionVal, callback){
+        orm.deleteOne("burgers", conditionVal, function(res){
+            callback(res);
+        });
+    },
   };
 
 

@@ -1,37 +1,62 @@
-//Create Button that will submit the user input into the database
-
-//Not Devorered
-<h2>Fresh Burgers Available</h2>
-
-<ul>
-  {{#each burger}}
-    {{#unless devoured}}
-      {{> burgers/burger-block devoured=false}}
-    {{/unless}}
-  {{/each}}
-</ul>
-
-<h2>Devoured Burgers</h2>
-
-<ul>
-  {{#each burger}}
-    {{#if devoured}}
-      {{> burgers/burger-block devoured=true}}
-    {{/if}}
-  {{/each}}
-</ul>
-
-
-
-
-//Burger Adder
-<h2>Add a Burger</h2>
-<form class="create-form">
-
-  <div class="form-group">
-    <label for="burg">Burger Name:</label>
-    <input type="text" id="burg" name="name">
+{<div class="container">
+  <div class="jumbotron">
+    <h1 class="text-center" id="titleName">Eat-Da-Burger!</h1>
   </div>
+  <div class="row">
 
-  <button type="submit">Add Burger</button>
-</form>
+    {{!-- Burgers Available Column --}}
+    <div class="col-lg-4">
+      <h2>Fresh Burgers</h2>
+      <ul>
+        {{#each burger}}
+        {{#unless this.devoured}}
+        <form class="form-inline" action="/{{this.id}}?_method=PUT" method="POST">
+          <button type="submit" class="btn btn-sm btn-primary" id="eat-btn"> Devour!</button>
+          <label class="ready-items">{{this.name}}</label>
+          <input type="hidden" name="devoured" value={{this.devoured}}>
+        </form>
+        {{/unless}}
+        {{/each}}
+      </ul>
+    </div>
+
+    {{!-- Add a Burger Column --}}
+    <div class="col-lg-4" id="midColumn">
+      <div class="row">
+        <div class="col-m-12"><img class="burgerMid" src="../public/assets/img/soloBurger.png"
+            alt="Looks Like a Whopper"></div>
+      </div>
+      <div class="row">
+        <div class="col-m-12">
+
+          <h2>Add a Burger</h2>
+          {{!-- Burger Adder --}}
+          <form action="/create" method="POST">
+            <div class="form-group">
+              <label for="new-burger" class="control-label">Create A New Burger</label>
+              <input class="form-control" type="text" id="new-burger" name="name" value="" placeholder="Add New Burger Name">
+              <button type="submit" class="btn btn-warning btn-block" id="add-btn">Add Burger</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    {{!-- Devoured Column --}}
+    <div class="col-lg-4">
+      <h2>Devoured Burgers</h2>
+      <ul>
+        {{#each burger}}
+        {{#if this.devoured}}
+        <form class="form-inline" action="/delete/{{this.id}}?_method=DELETE" method="POST">
+          <button type="submit" class="btn btn-sm btn-danger" id="eat-btn">Remove!</button>
+          <label class="ready-items">{{this.name}}</label>
+          <input type="hidden" name="devoured" value={{this.devoured}}>
+        </form>
+        {{/if}}
+        {{/each}}
+      </ul>
+    </div>
+
+  </div>
+</div>
